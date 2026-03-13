@@ -70,7 +70,7 @@ static QPushButton* makeActionBtn(const QString& label,
 // ── Constructor ──────────────────────────────────────────────────────────────
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent)
 {
-    setWindowTitle(cs.clinicName.isEmpty() ? "DentaPro" : cs.clinicName);
+    setWindowTitle(ClinicSettings::instance().clinicName.isEmpty() ? "DentaPro" : ClinicSettings::instance().clinicName);
     setMinimumSize(1100, 720);
     resize(1300, 820);
 
