@@ -11,6 +11,7 @@ class QTabWidget;
 class QTableWidget;
 class QDateEdit;
 class QComboBox;
+class QPushButton;
 class PatientHistoryWidget;
 class StatisticsWidget;
 
@@ -66,7 +67,7 @@ private:
     QLineEdit*            m_searchBox          = nullptr;
     QStackedWidget*       m_rightStack         = nullptr;
 
-    // Clinic branding (sidebar)
+    // Clinic branding
     QWidget*              m_logoWidget         = nullptr;
     QLabel*               m_logoImageLbl       = nullptr;
     QLabel*               m_clinicNameLbl      = nullptr;
@@ -100,16 +101,16 @@ private:
 
     Patient               m_currentPatient;
 
-    // ── Paginacija pacijenata ────────────────────────────────────────────────
-    static const int      PAGE_SIZE = 100;   // pacijenata po stranici
-    int                   m_patientOffset = 0;
-    int                   m_patientTotal  = 0;
+    // Paginacija pacijenata
+    static const int      PAGE_SIZE = 100;
+    int                   m_patientOffset  = 0;
+    int                   m_patientTotal   = 0;
     QString               m_lastSearch;
     QLabel*               m_patientCountLbl = nullptr;
     QPushButton*          m_loadMoreBtn     = nullptr;
 
-    // ── Paginacija intervencija ──────────────────────────────────────────────
-    static const int      IV_PAGE_SIZE = 25; // intervencija po stranici
+    // Paginacija intervencija
+    static const int      IV_PAGE_SIZE = 25;
     int                   m_ivOffset   = 0;
     int                   m_ivTotal    = 0;
     QPushButton*          m_ivLoadMoreBtn = nullptr;
