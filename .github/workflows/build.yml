@@ -34,19 +34,20 @@ jobs:
       - name: Package
         shell: powershell
         run: |
+          $exeName = "Zubarska ordinacija Mitranic.exe"
           New-Item -ItemType Directory -Force -Path "pkg"
-          Copy-Item "build\DentaPro.exe" "pkg\"
-          & "C:\Qt\6.5.3\msvc2019_64\bin\windeployqt.exe" --release --no-translations --sql "pkg\DentaPro.exe"
+          Copy-Item "build\$exeName" "pkg\"
+          & "C:\Qt\6.5.3\msvc2019_64\bin\windeployqt.exe" --release --no-translations --sql "pkg\$exeName"
           $sql = "C:\Qt\6.5.3\msvc2019_64\plugins\sqldrivers\qsqlite.dll"
           New-Item -ItemType Directory -Force -Path "pkg\sqldrivers"
           if (Test-Path $sql) { Copy-Item $sql "pkg\sqldrivers\" -Force }
-          Compress-Archive -Path "pkg\*" -DestinationPath "DentaPro-Windows-x64.zip" -Force
+          Compress-Archive -Path "pkg\*" -DestinationPath "ZubarskaOrdinacijaMitranic-Windows-x64.zip" -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DentaPro-Windows-x64
-          path: DentaPro-Windows-x64.zip
+          name: ZubarskaOrdinacijaMitranic-Windows-x64
+          path: ZubarskaOrdinacijaMitranic-Windows-x64.zip
           retention-days: 30
 
       - name: Create Release
@@ -54,8 +55,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: "DentaPro v1.0.${{ github.run_number }}"
-          body: "Preuzmi ZIP, raspakuj, pokreni DentaPro.exe"
-          files: DentaPro-Windows-x64.zip
+          name: "Zubarska ordinacija Mitranic v1.0.${{ github.run_number }}"
+          body: "Preuzmi ZIP, raspakuj i pokreni exe."
+          files: ZubarskaOrdinacijaMitranic-Windows-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
