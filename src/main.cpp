@@ -138,9 +138,6 @@ int main(int argc, char* argv[])
     splash->show();
     app.processEvents();
 
-    // Update window title with clinic name
-    auto& cs = ClinicSettings::instance();
-
     // Check SQLite driver
     if (!QSqlDatabase::drivers().contains("QSQLITE")) {
         splash->hide();
