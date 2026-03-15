@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
+
+# Naziv EXE-a
+set(APP_NAME "Zubarska ordinacija Mitranic")
+
 project(DentaPro VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -56,18 +60,21 @@ set(RESOURCES resources/resources.qrc)
 
 # ── Platform-specific ────────────────────────────────────────────────────────
 if(WIN32)
-    # Windows: GUI app (no console), app icon
     set(WIN_ICON "")
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/app.rc")
         set(WIN_ICON resources/app.rc)
     endif()
     add_executable(DentaPro WIN32 ${SOURCES} ${HEADERS} ${RESOURCES} ${WIN_ICON})
 elseif(APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE DentaPro.icns)
     add_executable(DentaPro MACOSX_BUNDLE ${SOURCES} ${HEADERS} ${RESOURCES})
 else()
     add_executable(DentaPro ${SOURCES} ${HEADERS} ${RESOURCES})
 endif()
+
+# ── Naziv EXE fajla ───────────────────────────────────────────────────────────
+set_target_properties(DentaPro PROPERTIES
+    OUTPUT_NAME "${APP_NAME}"
+)
 
 # ── Link ──────────────────────────────────────────────────────────────────────
 target_link_libraries(DentaPro PRIVATE ${QT_LIBS})
@@ -81,7 +88,7 @@ install(TARGETS DentaPro
     RUNTIME DESTINATION bin
 )
 
-# ── Post-build: copy DLL's on Windows (windeployqt) ──────────────────────────
+# ── Post-build: windeployqt ───────────────────────────────────────────────────
 if(WIN32)
     if(Qt6_FOUND)
         get_target_property(_qmake_executable Qt6::qmake IMPORTED_LOCATION)
