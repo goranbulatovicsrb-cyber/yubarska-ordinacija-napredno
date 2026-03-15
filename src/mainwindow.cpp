@@ -264,7 +264,11 @@ void MainWindow::setupDashboard()
     lay->setContentsMargins(24, 24, 24, 24);
     lay->setSpacing(20);
 
-    auto* welcome = new QLabel("Dobrodosli u DentaPro");
+    auto& csRef = ClinicSettings::instance();
+    QString welcomeText = csRef.clinicName.isEmpty()
+        ? "Dobrodosli u DentaPro"
+        : "Dobrodosli u " + csRef.clinicName;
+    auto* welcome = new QLabel(welcomeText);
     welcome->setStyleSheet("font-size:24px;font-weight:bold;color:#1565C0;");
     lay->addWidget(welcome);
 
