@@ -266,9 +266,10 @@ void MainWindow::setupDashboard()
 
     auto& csRef = ClinicSettings::instance();
     QString welcomeText = csRef.clinicName.isEmpty()
-        ? "Dobrodosli u DentaPro"
+        ? "Dobrodosli!"
         : "Dobrodosli u " + csRef.clinicName;
-    auto* welcome = new QLabel(welcomeText);
+    m_welcomeLbl = new QLabel(welcomeText);
+    auto* welcome = m_welcomeLbl;
     welcome->setStyleSheet("font-size:24px;font-weight:bold;color:#1565C0;");
     lay->addWidget(welcome);
 
@@ -1174,6 +1175,13 @@ void MainWindow::applyClinicBranding()
 
     // Update window title
     setWindowTitle(cs.clinicName.isEmpty() ? "DentaPro" : cs.clinicName);
+
+    // Update dashboard welcome text
+    if (m_welcomeLbl) {
+        m_welcomeLbl->setText(cs.clinicName.isEmpty()
+            ? "Dobrodosli!"
+            : "Dobrodosli u " + cs.clinicName);
+    }
 
     // Show logo if available
     if (cs.hasLogo()) {
