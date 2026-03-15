@@ -660,7 +660,7 @@ void MainWindow::setupMenu()
             "<b>" + naziv + " v1.0</b><br/>"
             "Sistem za upravljanje zubarskom ordinacijom<br/><br/>"
             "Razvijeno u C++ / Qt6<br/>"
-            "<small>2025 " + naziv + "</small>");
+            "<small>2026 " + naziv + "</small>");
     });
 }
 
