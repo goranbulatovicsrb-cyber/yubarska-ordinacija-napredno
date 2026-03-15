@@ -11,7 +11,6 @@ class QTabWidget;
 class QTableWidget;
 class QDateEdit;
 class QComboBox;
-class QPushButton;
 class PatientHistoryWidget;
 class StatisticsWidget;
 
@@ -63,10 +62,12 @@ private:
     void refreshPatientDetail();
     void showPatientCard(const Patient& p);
 
+    // UI refs
     QListWidget*          m_patientList        = nullptr;
     QLineEdit*            m_searchBox          = nullptr;
     QStackedWidget*       m_rightStack         = nullptr;
 
+    // Clinic branding (sidebar)
     QWidget*              m_logoWidget         = nullptr;
     QLabel*               m_logoImageLbl       = nullptr;
     QLabel*               m_clinicNameLbl      = nullptr;
@@ -77,6 +78,7 @@ private:
     QLabel*               m_statIvMonth        = nullptr;
     QLabel*               m_statRevMonth       = nullptr;
     QTableWidget*         m_upcomingTable      = nullptr;
+    QLabel*               m_welcomeLbl         = nullptr;
 
     QWidget*              m_detailWidget       = nullptr;
     QTabWidget*           m_detailTabs         = nullptr;
@@ -100,16 +102,18 @@ private:
 
     Patient               m_currentPatient;
 
-    static const int      PAGE_SIZE            = 100;
-    int                   m_patientOffset      = 0;
-    int                   m_patientTotal       = 0;
+    // ── Paginacija pacijenata ────────────────────────────────────────────────
+    static const int      PAGE_SIZE = 100;   // pacijenata po stranici
+    int                   m_patientOffset = 0;
+    int                   m_patientTotal  = 0;
     QString               m_lastSearch;
-    QLabel*               m_patientCountLbl    = nullptr;
-    QPushButton*          m_loadMoreBtn        = nullptr;
+    QLabel*               m_patientCountLbl = nullptr;
+    QPushButton*          m_loadMoreBtn     = nullptr;
 
-    static const int      IV_PAGE_SIZE         = 25;
-    int                   m_ivOffset           = 0;
-    int                   m_ivTotal            = 0;
-    QPushButton*          m_ivLoadMoreBtn      = nullptr;
-    QLabel*               m_ivCountLbl         = nullptr;
+    // ── Paginacija intervencija ──────────────────────────────────────────────
+    static const int      IV_PAGE_SIZE = 25; // intervencija po stranici
+    int                   m_ivOffset   = 0;
+    int                   m_ivTotal    = 0;
+    QPushButton*          m_ivLoadMoreBtn = nullptr;
+    QLabel*               m_ivCountLbl    = nullptr;
 };
